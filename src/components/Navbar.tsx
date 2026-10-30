@@ -40,7 +40,7 @@ const Navbar = () => {
           <img src={logo} alt="A & DE Accesorios" className="h-14" />
         </a>
 
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden lg:flex items-center gap-8">
           {links.map((l) => (
             <a
               key={l.href}
@@ -72,7 +72,7 @@ const Navbar = () => {
           </a>
         </div>
 
-        <div className="flex items-center gap-3 md:hidden">
+        <div className="flex items-center gap-3 lg:hidden">
           <a
             href="/carrito.html"
             aria-label={`Carrito de compras, ${cartCount} productos`}
@@ -83,14 +83,21 @@ const Navbar = () => {
               {cartCount}
             </span>
           </a>
-          <button onClick={() => setOpen(!open)} className="text-foreground">
+          <button
+            type="button"
+            onClick={() => setOpen((isOpen) => !isOpen)}
+            aria-expanded={open}
+            aria-controls="mobile-navigation"
+            aria-label={open ? "Cerrar menú" : "Abrir menú"}
+            className="text-foreground"
+          >
             {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
       </div>
 
       {open && (
-        <div className="md:hidden bg-card border-t border-border px-4 pb-4">
+        <div id="mobile-navigation" className="lg:hidden bg-card border-t border-border px-4 pb-4">
           {links.map((l) => (
             <a
               key={l.href}

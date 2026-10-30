@@ -64,8 +64,10 @@
       .hero {
         position: relative;
         display: flex;
-        min-height: 310px;
-        align-items: end;
+        min-height: 370px;
+        align-items: center;
+        justify-content: space-between;
+        gap: clamp(24px, 5vw, 64px);
         overflow: hidden;
         isolation: isolate;
         padding: 58px clamp(20px, 8vw, 120px);
@@ -74,7 +76,12 @@
       }
       .hero-media { position: absolute; z-index: 0; inset: 0; background: url("/catalogo-hero.jpg") center 48% / cover no-repeat; animation: hero-arrive 1.2s cubic-bezier(.2,.7,.2,1) both; }
       .hero::before { position: absolute; z-index: 1; inset: 0; background: linear-gradient(90deg, rgb(9 15 18 / 91%), rgb(9 15 18 / 65%) 50%, rgb(9 15 18 / 16%)); content: ""; }
-      .hero-content { position: relative; z-index: 2; width: min(760px, 100%); }
+      .hero-content { position: relative; z-index: 2; width: min(620px, 58%); }
+      .hero-video { position: relative; z-index: 2; display: block; flex: 0 1 480px; width: min(480px, 42%); overflow: hidden; border: 1px solid rgb(255 255 255 / 28%); border-radius: 8px; background: #05070b; box-shadow: 0 18px 48px rgb(0 0 0 / 35%); }
+      .hero-video-media { position: relative; display: grid; aspect-ratio: 16 / 9; place-items: center; overflow: hidden; background: #fff; }
+      .hero-video-player { display: block; width: 100%; height: 100%; object-fit: contain; }
+      .hero-video-caption { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 14px; color: #e0e5e3; font-size: 11px; }
+      .hero-video-status { flex: 0 0 auto; color: #fff; font-weight: 700; }
       .hero-content .eyebrow { animation: rise-in .65s .1s both; }
       .hero-content h1 { animation: rise-in .7s .2s both; }
       .hero-content > p:last-child { animation: rise-in .7s .32s both; }
@@ -142,6 +149,7 @@
       .product-name-link { color: inherit; text-decoration: none; }
       .product-name-link:hover { color: var(--red-dark); }
       .product-category { position: absolute; right: 9px; bottom: 9px; padding: 5px 8px; background: rgb(9 11 18 / 88%); color: #fff; font-size: 9px; font-weight: 700; }
+      .product-offer { position: absolute; top: 12px; left: 12px; z-index: 1; padding: 7px 10px; background: var(--red); color: #fff; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
       .product-info { display: flex; flex: 1; flex-direction: column; align-items: start; padding: 14px; }
       .product-code { margin-bottom: 7px; color: var(--red-dark); font-size: 10px; font-weight: 700; line-height: 1.45; text-transform: uppercase; }
       .product-info h3 { margin: 0 0 7px; font-family: "Oswald", sans-serif; font-size: 17px; font-weight: 500; letter-spacing: 0; line-height: 1.25; }
@@ -162,11 +170,14 @@
       .detail-main-image { display: grid; aspect-ratio: 1.2; place-items: center; overflow: hidden; background: #f7f8fa; }
       .detail-main-image img { width: 100%; height: 100%; padding: clamp(20px, 5vw, 64px); object-fit: contain; animation: card-arrive .35s both; }
       .detail-thumbnails { display: flex; gap: 10px; padding-top: 12px; }
+      .detail-thumbnails:empty { display: none; }
+      .detail-thumbnails { max-width: 100%; overflow-x: auto; padding-bottom: 4px; }
       .detail-thumb { width: 76px; height: 68px; padding: 4px; overflow: hidden; border: 1px solid var(--line); background: var(--surface); cursor: pointer; }
       .detail-thumb[aria-pressed="true"] { border-color: var(--red); box-shadow: inset 0 0 0 1px var(--red); }
       .detail-thumb img { width: 100%; height: 100%; object-fit: cover; }
       .detail-copy { padding-top: 4px; }
       .detail-code { display: inline-block; margin-bottom: 12px; color: var(--red-dark); font-size: 11px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; }
+      .detail-offer { display: block; width: fit-content; margin: -3px 0 12px; padding: 6px 9px; background: var(--red); color: #fff; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
       .detail-title { margin: 0 0 14px; font-family: "Oswald", sans-serif; font-size: clamp(30px, 4vw, 42px); font-weight: 600; letter-spacing: 0; line-height: 1.08; }
       .detail-description { margin-bottom: 24px; color: var(--muted); font-size: 14px; line-height: 1.75; }
       .detail-points { display: grid; gap: 0; margin: 0 0 26px; padding: 0; border-top: 1px solid var(--line); list-style: none; }
@@ -212,7 +223,9 @@
       }
       @media (max-width: 680px) {
         .topbar-inner { padding: 0 16px; }
-        .hero { min-height: 280px; padding: 44px 22px; background-position: 58% center; }
+        .hero { min-height: unset; flex-direction: column; align-items: stretch; gap: 22px; padding: 38px 22px; background-position: 58% center; }
+        .hero-content, .hero-video { width: 100%; max-width: none; }
+        .hero-video { flex-basis: auto; }
         .hero-media { background-position: 58% center; }
         .hero::before { background: linear-gradient(90deg, rgb(9 15 18 / 90%), rgb(9 15 18 / 62%)); }
         .proof-strip { gap: 6px; padding: 14px 12px; }
@@ -297,6 +310,15 @@
         <p class="eyebrow">A &amp; DE · Accesorios para vidrio</p>
         <h1 id="page-title">Catálogo de productos</h1>
         <p>Herrajes en acero inoxidable calidad 304 para hogares, talleres y proyectos profesionales. Soluciones a medida para duchas, puertas y ventanas.</p>
+      </div>
+      <div class="hero-video" aria-label="Video del kit de ducha Euro">
+        <div class="hero-video-media">
+          <video class="hero-video-player" autoplay muted loop playsinline controls preload="metadata" aria-label="Video del kit de ducha Euro">
+            <source src="/catalogo-products/kit-euroia.mp4" type="video/mp4" />
+            Tu navegador no puede reproducir este video.
+          </video>
+        </div>
+        <div class="hero-video-caption"><span>Kit de ducha Euro</span><span class="hero-video-status">Reproducción automática</span></div>
       </div>
     </section>
 
@@ -388,6 +410,14 @@
         { category: "Duchas", code: "", name: "Tiradores para ducha", detail: "Acero inoxidable calidad 304, con diversas presentaciones.", image: "herrajes" },
         { category: "Duchas", code: "", name: "Guía acrílica", detail: "Para ducha de 6 mm y 8 mm.", image: "herrajes" },
         { category: "Duchas", code: "", name: "Toallero", detail: "Acero inoxidable calidad 304.", image: "herrajes" },
+        { category: "Kits Euro", code: "A001", name: "Kit Euro A001 fijo + corredizo en esquina", detail: "Kit para puerta de ducha en 90° o esquina. Acero inoxidable 304; acabado brillante o negro.", images: ["/catalogo-products/kits-euro-a001-01.jpg", "/catalogo-products/kits-euro-a001-02.jpg", "/catalogo-products/kits-euro-a001-03.jpg"] },
+        { category: "Kits Euro", code: "A002", name: "Kit Euro A002 fijo + corredizo", detail: "Kit para puerta de ducha fijo + corredizo. Acero inoxidable 304; acabado brillante o negro.", images: ["/catalogo-products/kits-euro-a002-01.png", "/catalogo-products/kits-euro-a002-02.jpg", "/catalogo-products/kits-euro-a002-03.png"] },
+        { category: "Kits Euro", code: "A002 Dorado", name: "Kit Euro A002 acabado dorado", detail: "Versión dorada del kit fijo + corredizo A002, en acero inoxidable 304.", images: ["/catalogo-products/kits-euro-a002-dorado-01.png", "/catalogo-products/kits-euro-a002-dorado-02.png", "/catalogo-products/kits-euro-a002-dorado-03.png"] },
+        { category: "Kits Euro", code: "A004", name: "Kit Euro A004 fijo + corredizo", detail: "Sistema Euro fijo + corredizo para ducha. Consulta medidas y acabados al cotizar.", imageFile: "/catalogo-products/kits-euro-a004-01.jpg" },
+        { category: "Kits Euro", code: "A005", name: "Kit Euro A005 fijo + corredizo", detail: "Sistema con una hoja fija y una móvil para vidrio templado de 8 mm. Acero inoxidable 304; disponible en cromo, negro y dorado.", images: ["/catalogo-products/kits-euro-a005-01.jpg", "/catalogo-products/kits-euro-a005-02.jpg", "/catalogo-products/kits-euro-a005-03.jpg", "/catalogo-products/kits-euro-a005-04.jpg", "/catalogo-products/kits-euro-a005-05.jpg", "/catalogo-products/kits-euro-a005-06.jpg"] },
+        { category: "Kits Euro", code: "A007", name: "Kit Euro A007 fijo + corredizo", detail: "Kit para puerta de ducha fijo + corredizo, con tubo redondo de 1 pulgada. Acero inoxidable 304.", images: ["/catalogo-products/kits-euro-a007-01.png", "/catalogo-products/kits-euro-a007-02.jpg", "/catalogo-products/kits-euro-a007-03.png"] },
+        { category: "Kits Euro", code: "A010", name: "Kit Euro A010 doble corredizo", detail: "Sistema doble corredizo para ducha, en acero inoxidable 304. Para vidrio de 8 a 10 mm.", images: ["/catalogo-products/kits-euro-a010-01.png", "/catalogo-products/kits-euro-a010-02.jpg"] },
+        { category: "Kits Euro", code: "A012", name: "Kit Euro A012 Euro Slide", detail: "Sistema Euro Slide para mampara de ducha, con fijación al muro y al vidrio. Acero inoxidable 304.", images: ["/catalogo-products/kits-euro-a012-01.jpg", "/catalogo-products/kits-euro-a012-02.jpg"] },
         { category: "Puertas y mamparas", code: "1101", name: "Bisagra parte alta", detail: "Para puerta. Acero inoxidable calidad 304.", image: "herrajes" },
         { category: "Puertas y mamparas", code: "1132", name: "Bisagra parte baja", detail: "Para puerta. Acero inoxidable calidad 304.", image: "herrajes" },
         { category: "Puertas y mamparas", code: "4030", name: "Bisagra para sobreluz", detail: "Bisagra de parte alta.", image: "herrajes" },
@@ -471,6 +501,7 @@
       const categoryImages = {
         "Contravientos": familyImageFiles("contravientos", 26),
         "Duchas": familyImageFiles("duchas", 33),
+        "Kits Euro": ["/catalogo-products/kits-euro-a005-01.jpg"],
         "Puertas y mamparas": familyImageFiles("puertas", 32),
         "Ventanas": familyImageFiles("ventanas", 24),
         "Garruchas": familyImageFiles("garruchas", 6),
@@ -487,10 +518,21 @@
       }
 
       function productImage(product) {
+        if (product.images?.length) return product.images[0];
+        if (product.imageFile) return product.imageFile;
         const familyProducts = products.filter((item) => item.category === product.category);
         const familyImages = categoryImages[product.category];
         const imageIndex = Math.floor(familyProducts.indexOf(product) * familyImages.length / familyProducts.length);
-        return familyImages[imageIndex];
+        return catalogImage(familyImages[imageIndex]);
+      }
+
+      function categoryImage(category) {
+        return catalogImage(categoryImages[category][0]);
+      }
+
+      function catalogImage(image) {
+        if (image.startsWith("/") || image.startsWith("https://")) return image;
+        return `/catalogo-products/${image}`;
       }
 
       function readQuoteItems() {
@@ -535,7 +577,7 @@
             code: product.code,
             name: product.name,
             detail: product.detail,
-            image: `/catalogo-products/${productImage(product)}`,
+            image: productImage(product),
             url: `/productos.html?producto=${encodeURIComponent(id)}`,
             quantity: 1,
           });
@@ -546,32 +588,36 @@
 
       function renderProductDetail(product) {
         const image = productImage(product);
+        const galleryImages = product.images || [image];
         const reference = product.code ? `Código ${product.code}` : "Fabricación según modelo";
         const message = encodeURIComponent(`Hola, quisiera cotizar ${product.name}${product.code ? ` (código ${product.code})` : ""}.`);
+        const isEuroKit = product.category === "Kits Euro";
         const related = products.filter((item) => item.category === product.category && item !== product).slice(0, 4);
         const breadcrumbs = `<nav class="breadcrumbs" aria-label="Ruta de navegación"><a href="/">Inicio</a><span>/</span><a href="/productos.html">Productos</a><span>/</span><a href="/productos.html#familias">${product.category}</a><span>/</span><span>${product.name}</span></nav>`;
-        const relatedCards = related.map((item) => `<a class="related-card" href="/productos.html?producto=${encodeURIComponent(productId(item))}"><img src="/catalogo-products/${productImage(item)}" alt="Imagen del catálogo para ${item.name}" loading="lazy" /><span>${item.name}</span></a>`).join("");
+        const relatedCards = related.map((item) => `<a class="related-card" href="/productos.html?producto=${encodeURIComponent(productId(item))}"><img src="${productImage(item)}" alt="Imagen del catálogo para ${item.name}" loading="lazy" /><span>${item.name}</span></a>`).join("");
 
         detailView.innerHTML = `${breadcrumbs}
           <div class="detail-layout">
             <div class="detail-gallery">
-              <div class="detail-main-image"><img id="detail-main-image" src="/catalogo-products/${image}" alt="Imagen del catálogo para ${product.name}" /></div>
+              <div class="detail-main-image"><img id="detail-main-image" src="${image}" alt="Imagen del catálogo para ${product.name}" /></div>
+              <div class="detail-thumbnails" aria-label="Fotos de ${product.name}">${galleryImages.map((galleryImage, index) => `<button class="detail-thumb" type="button" data-gallery-image="${galleryImage}" aria-label="Ver foto ${index + 1} de ${product.name}" aria-pressed="${index === 0}"><img src="${galleryImage}" alt="" loading="lazy" /></button>`).join("")}</div>
             </div>
             <div class="detail-copy">
               <span class="detail-code">${reference}</span>
+              ${isEuroKit ? '<span class="detail-offer">Oferta en kits Euro · Consulta precio especial</span>' : ""}
               <h1 class="detail-title">${product.name}</h1>
               <p class="detail-description">${product.detail}</p>
               <ul class="detail-points">
                 <li><span>Familia</span><strong>${product.category}</strong></li>
                 <li><span>Material</span><strong>Acero inoxidable calidad 304</strong></li>
-                <li><span>Precio y disponibilidad</span><strong>A consultar</strong></li>
+                <li><span>${isEuroKit ? "Oferta" : "Precio y disponibilidad"}</span><strong>${isEuroKit ? "Consulta precio especial" : "A consultar"}</strong></li>
               </ul>
               <div class="detail-actions">
                 <button class="detail-cta" id="add-to-quote" type="button" aria-pressed="${readQuoteItems().some((item) => item.id === productId(product))}">Añadir al carrito</button>
                 <a class="quote-view" href="/carrito.html">Ver carrito (<span id="quote-count">${readQuoteItems().reduce((total, item) => total + item.quantity, 0)}</span>) <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg></a>
               </div>
-              <a class="product-link" href="https://wa.me/51981296259?text=${message}" target="_blank" rel="noopener noreferrer">Consultar directamente por WhatsApp</a>
-              <p class="detail-footnote">Imagen extraída del catálogo de productos. Confirma acabado y medidas al solicitar cotización.</p>
+              <a class="product-link" href="https://wa.me/51981296259?text=${isEuroKit ? encodeURIComponent(`Hola, quisiera consultar la oferta para ${product.name}${product.code ? ` (código ${product.code})` : ""}.`) : message}" target="_blank" rel="noopener noreferrer">${isEuroKit ? "Consultar oferta por WhatsApp" : "Consultar directamente por WhatsApp"}</a>
+              <p class="detail-footnote">${isEuroKit ? (product.images?.length || product.imageFile) ? "Imágenes referenciales del kit. Confirma acabado y medidas al solicitar cotización." : "Foto propia próximamente. Confirma medidas y acabados al solicitar cotización." : "Imagen del catálogo de productos. Confirma acabado y medidas al solicitar cotización."}</p>
             </div>
           </div>
           ${relatedCards ? `<section class="related" aria-labelledby="related-title"><div class="related-heading"><h2 id="related-title">Productos relacionados</h2><a href="/productos.html#familias">Ver catálogo</a></div><div class="related-grid">${relatedCards}</div></section>` : ""}`;
@@ -582,6 +628,12 @@
       }
 
       detailView.addEventListener("click", (event) => {
+        const thumbnail = event.target.closest("button[data-gallery-image]");
+        if (thumbnail) {
+          detailView.querySelector("#detail-main-image").src = thumbnail.dataset.galleryImage;
+          detailView.querySelectorAll(".detail-thumb").forEach((button) => button.setAttribute("aria-pressed", String(button === thumbnail)));
+          return;
+        }
         const quoteButton = event.target.closest("#add-to-quote");
         if (quoteButton) {
           const currentProduct = products.find((product) => productId(product) === new URLSearchParams(window.location.search).get("producto"));
@@ -595,7 +647,7 @@
           const familyProducts = products.filter((product) => product.category === category);
           const referenceLabel = familyProducts.length === 1 ? "referencia" : "referencias";
           return `<button class="category-card" type="button" data-category="${category}" style="--item-index:${index}">
-            <span class="category-picture"><img src="/catalogo-products/${categoryImages[category][0]}" alt="" loading="lazy" /><span class="category-total">${familyProducts.length} ${referenceLabel}</span></span>
+            <span class="category-picture"><img src="${categoryImage(category)}" alt="" loading="lazy" /><span class="category-total">${familyProducts.length} ${referenceLabel}</span></span>
             <span class="category-card-copy"><span><h3>${category}</h3><p>Ver productos</p></span><svg class="category-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
           </button>`;
         }).join("");
@@ -625,16 +677,17 @@
         count.textContent = `${filtered.length} ${filtered.length === 1 ? "producto" : "productos"}`;
         grid.innerHTML = filtered.length ? filtered.map((product, index) => {
           const reference = product.code ? `Código ${product.code}` : "A medida / según modelo";
-          const message = encodeURIComponent(`Hola, quisiera consultar disponibilidad de ${product.name}${product.code ? ` (código ${product.code})` : ""}.`);
+          const isEuroKit = product.category === "Kits Euro";
+          const message = encodeURIComponent(isEuroKit ? `Hola, quisiera consultar la oferta para ${product.name}${product.code ? ` (código ${product.code})` : ""}.` : `Hola, quisiera consultar disponibilidad de ${product.name}${product.code ? ` (código ${product.code})` : ""}.`);
           const image = productImage(product);
           const productUrl = `/productos.html?producto=${encodeURIComponent(productId(product))}`;
           return `<article class="product" style="--item-index:${index}">
-            <a class="product-open" href="${productUrl}" aria-label="Ver detalle: ${product.name}"><div class="product-image"><img src="/catalogo-products/${image}" alt="Imagen del catálogo: ${product.name}" loading="lazy" /><span class="product-category">${product.category}</span></div></a>
+            <a class="product-open" href="${productUrl}" aria-label="Ver detalle: ${product.name}"><div class="product-image"><img src="${image}" alt="Imagen del catálogo: ${product.name}" loading="lazy" />${isEuroKit ? '<span class="product-offer">Oferta</span>' : ""}<span class="product-category">${product.category}</span></div></a>
             <div class="product-info">
               <span class="product-code">${reference}</span>
               <a class="product-name-link" href="${productUrl}"><h3>${product.name}</h3></a>
               <p>${product.detail}</p>
-              <a class="product-link" href="https://wa.me/51981296259?text=${message}" target="_blank" rel="noopener noreferrer">Consultar <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg></a>
+              <a class="product-link" href="https://wa.me/51981296259?text=${message}" target="_blank" rel="noopener noreferrer">${isEuroKit ? "Consultar oferta" : "Consultar"} <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg></a>
               <button class="product-cart" type="button" data-add-cart="${productId(product)}"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 4h2l2.2 11.2a2 2 0 0 0 2 1.6h8.5a2 2 0 0 0 1.9-1.4L21 8H6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" /></svg>Añadir al carrito</button>
             </div>
           </article>`;
