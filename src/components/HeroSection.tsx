@@ -1,10 +1,11 @@
+import { ArrowDown, ArrowRight, BadgeCheck, Factory, ShieldCheck, Wrench } from "lucide-react";
 import heroImg from "@/assets/hero-steel.jpg";
 import logo from "@/assets/logo.png";
 import barandasImg from "@/assets/product-barandas.jpg";
 
 const HeroSection = () => {
   return (
-    <section id="inicio" className="relative flex min-h-screen items-center justify-center overflow-hidden">
+    <section id="inicio" className="relative flex min-h-[92svh] items-center justify-center overflow-hidden">
       <div className="absolute inset-0">
         <img
           src={heroImg}
@@ -13,45 +14,51 @@ const HeroSection = () => {
           height={1080}
           className="hero-background w-full h-full object-cover"
         />
-        <div className="hero-overlay absolute inset-0 bg-background/70" />
+        <div className="hero-overlay absolute inset-0 bg-background/80" />
       </div>
 
-      <div className="relative z-10 container mx-auto grid w-full items-center gap-10 px-4 py-28 lg:grid-cols-2 lg:gap-14">
+      <div className="relative z-10 container mx-auto grid w-full items-center gap-12 px-4 pb-20 pt-28 md:py-32 lg:grid-cols-[1fr_0.95fr] lg:gap-16">
         <div className="hero-copy text-center lg:text-left">
-          <img src={logo} alt="A & DE Accesorios" className="mx-auto mb-8 h-24 md:h-32 lg:mx-0" />
-          <p className="mb-4 text-sm font-medium uppercase tracking-[0.4em] text-primary">
-            Fabricantes de acero inoxidable calidad 304
+          <img src={logo} alt="A & DE Accesorios" className="mx-auto mb-7 h-16 md:h-20 lg:mx-0" />
+          <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-border bg-background/70 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground md:text-xs">
+            <BadgeCheck className="h-4 w-4 text-primary" aria-hidden="true" />
+            Fabricación en acero inoxidable 304
           </p>
-          <h1 className="mb-6 font-display text-5xl font-bold uppercase leading-none md:text-7xl lg:text-8xl">
+          <h1 className="mb-6 font-display text-5xl font-bold uppercase leading-[0.95] md:text-7xl xl:text-8xl">
             <span className="text-gradient-brand">Accesorios</span>
             <br />
             <span className="text-foreground">de Acero</span>
           </h1>
-          <p className="mx-auto mb-10 max-w-xl text-lg text-muted-foreground lg:mx-0">
+          <p className="mx-auto mb-8 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg lg:mx-0">
             Barandas, herrajes, soportes y piezas personalizadas en acero inoxidable calidad 304
             para vidrio y construcción. Soluciones para proyectos residenciales y comerciales.
           </p>
-          <div className="flex flex-col justify-center gap-4 sm:flex-row lg:justify-start">
+          <div className="flex flex-col justify-center gap-3 sm:flex-row lg:justify-start">
             <a
               href="https://wa.me/51981296259?text=Hola%2C%20quiero%20cotizar%20accesorios%20de%20acero"
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-md bg-primary px-8 py-4 font-display text-sm font-semibold uppercase tracking-widest text-primary-foreground shadow-red transition-opacity hover:opacity-90"
+              className="inline-flex items-center justify-center gap-2 rounded-md bg-primary px-7 py-4 font-display text-sm font-semibold uppercase tracking-widest text-primary-foreground shadow-red transition-all hover:-translate-y-0.5 hover:opacity-90"
             >
-              Cotizar ahora
+              Cotizar proyecto <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </a>
             <a
               href="#productos"
-              className="rounded-md border border-glow px-8 py-4 font-display text-sm font-semibold uppercase tracking-widest text-foreground transition-colors hover:bg-secondary"
+              className="inline-flex items-center justify-center gap-2 rounded-md border border-border bg-background/40 px-7 py-4 font-display text-sm font-semibold uppercase tracking-widest text-foreground transition-colors hover:border-primary/50 hover:bg-secondary"
             >
-              Ver productos
+              Explorar productos <ArrowDown className="h-4 w-4" aria-hidden="true" />
             </a>
+          </div>
+          <div className="mt-8 flex flex-wrap justify-center gap-x-5 gap-y-3 text-xs text-muted-foreground lg:justify-start">
+            <span className="inline-flex items-center gap-2"><Factory className="h-4 w-4 text-primary" aria-hidden="true" />Fabricación propia</span>
+            <span className="inline-flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-primary" aria-hidden="true" />Acero inoxidable 304</span>
+            <span className="inline-flex items-center gap-2"><Wrench className="h-4 w-4 text-primary" aria-hidden="true" />Soluciones a medida</span>
           </div>
         </div>
 
-        <figure className="overflow-hidden rounded-lg border border-border bg-background/80 shadow-2xl backdrop-blur-sm">
+        <figure className="overflow-hidden rounded-xl border border-white/10 bg-background/80 shadow-2xl shadow-black/40 backdrop-blur-sm">
           <video
-            className="mx-auto block max-h-[70vh] w-full bg-background object-contain"
+            className="mx-auto block aspect-[4/3] max-h-[68vh] w-full bg-background object-cover"
             src="/catalogo-products/barandas-ia.mp4"
             poster={barandasImg}
             loop
@@ -62,11 +69,16 @@ const HeroSection = () => {
           >
             Tu navegador no puede reproducir este video.
           </video>
-          <figcaption className="px-5 py-4">
-            <p className="mb-1 font-display text-lg font-semibold uppercase text-foreground">
-              Barandas de acero inoxidable
-            </p>
-            <p className="text-sm text-muted-foreground">Diseño y calidad para tus espacios.</p>
+          <figcaption className="flex items-center justify-between gap-4 border-t border-border px-5 py-4">
+            <div>
+              <p className="mb-1 font-display text-sm font-semibold uppercase tracking-wide text-foreground md:text-base">
+                Detalle de nuestro trabajo
+              </p>
+              <p className="text-xs text-muted-foreground md:text-sm">Barandas fabricadas para cada espacio.</p>
+            </div>
+            <span className="shrink-0 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-primary">
+              Acero 304
+            </span>
           </figcaption>
         </figure>
       </div>

@@ -13,6 +13,11 @@
       :root { color-scheme: dark; --ink:#edf0f5; --muted:#a0a9ba; --paper:#0a0d14; --surface:#10141f; --line:#273046; --red:#e31b23; --red-dark:#f04444; --dark:#090b12; font-family:"DM Sans",sans-serif; }
       * { box-sizing:border-box; }
       [hidden] { display:none !important; }
+      html { scrollbar-color:#315ebd #0a0d14; scrollbar-width:thin; }
+      ::-webkit-scrollbar { width:12px; height:12px; }
+      ::-webkit-scrollbar-track { background:#0a0d14; }
+      ::-webkit-scrollbar-thumb { border:3px solid #0a0d14; border-radius:999px; background:linear-gradient(180deg,#e31b23,#315ebd); }
+      ::-webkit-scrollbar-thumb:hover { background:#f04444; }
       body { margin:0; color:var(--ink); background:linear-gradient(135deg,#0a0d14,#11182a 50%,#0a0d14); }
       a { color:inherit; }
       .topbar { position:sticky; top:0; z-index:50; height:65px; border-bottom:1px solid var(--line); background:rgb(10 13 20 / 90%); color:#fff; backdrop-filter:blur(12px); }
@@ -102,7 +107,7 @@
       <div class="topbar-inner">
         <a class="brand" href="/#inicio" aria-label="A & DE Accesorios, inicio"><img src="/logo.png" alt="A &amp; DE Accesorios" /></a>
         <nav class="desktop-nav" aria-label="Navegación principal">
-          <a href="/#inicio">Inicio</a><a href="/productos.html">Productos</a><a href="/#catalogo">Catálogo</a><a href="/#nosotros">Nosotros</a><a href="/#contacto">Contacto</a>
+          <a href="/#inicio">Inicio</a><a href="/productos.html">Productos</a><a href="/#ofertas">Ofertas</a><a href="/#catalogo">Catálogo</a><a href="/#nosotros">Nosotros</a><a href="/#contacto">Contacto</a>
           <a class="nav-cart" href="/carrito.html" aria-label="Carrito de compras, 0 unidades"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 4h2l2.2 11.2a2 2 0 0 0 2 1.6h8.5a2 2 0 0 0 1.9-1.4L21 8H6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" /><circle cx="10" cy="20" r="1" fill="currentColor" /><circle cx="18" cy="20" r="1" fill="currentColor" /></svg>Carrito <span class="nav-cart-count" data-cart-count>0</span></a>
           <a class="nav-contact" href="https://wa.me/51981296259" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 11.2 19a19.4 19.4 0 0 1-6-6A19.8 19.8 0 0 1 2.2 4.2 2 2 0 0 1 4.2 2h3a2 2 0 0 1 2 1.7l.5 2.8a2 2 0 0 1-.6 1.9L7.8 9.7a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 1.9-.6l2.8.5a2 2 0 0 1 2.2 2.6Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>WhatsApp</a>
         </nav>
@@ -112,7 +117,7 @@
         </div>
       </div>
       <nav class="mobile-menu" id="mobile-menu" aria-label="Navegación móvil" aria-hidden="true">
-        <a href="/#inicio">Inicio</a><a href="/productos.html">Productos</a><a href="/#catalogo">Catálogo</a><a href="/#nosotros">Nosotros</a><a href="/#contacto">Contacto</a>
+        <a href="/#inicio">Inicio</a><a href="/productos.html">Productos</a><a href="/#ofertas">Ofertas</a><a href="/#catalogo">Catálogo</a><a href="/#nosotros">Nosotros</a><a href="/#contacto">Contacto</a>
         <a class="mobile-menu-cart" href="/carrito.html"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 4h2l2.2 11.2a2 2 0 0 0 2 1.6h8.5a2 2 0 0 0 1.9-1.4L21 8H6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" /><circle cx="10" cy="20" r="1" fill="currentColor" /><circle cx="18" cy="20" r="1" fill="currentColor" /></svg>Carrito <span class="nav-cart-count" data-cart-count>0</span></a>
         <a class="nav-contact" href="https://wa.me/51981296259" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 11.2 19a19.4 19.4 0 0 1-6-6A19.8 19.8 0 0 1 2.2 4.2 2 2 0 0 1 4.2 2h3a2 2 0 0 1 2 1.7l.5 2.8a2 2 0 0 1-.6 1.9L7.8 9.7a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 1.9-.6l2.8.5a2 2 0 0 1 2.2 2.6Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>WhatsApp</a>
       </nav>

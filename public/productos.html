@@ -23,7 +23,11 @@
 
       * { box-sizing: border-box; }
       [hidden] { display: none !important; }
-      html { scroll-behavior: smooth; }
+      html { scroll-behavior: smooth; scrollbar-color: #315ebd #0a0d14; scrollbar-width: thin; }
+      ::-webkit-scrollbar { width: 12px; height: 12px; }
+      ::-webkit-scrollbar-track { background: #0a0d14; }
+      ::-webkit-scrollbar-thumb { border: 3px solid #0a0d14; border-radius: 999px; background: linear-gradient(180deg, #e31b23, #315ebd); }
+      ::-webkit-scrollbar-thumb:hover { background: #f04444; }
       body { margin: 0; background: linear-gradient(135deg, #0a0d14, #11182a 50%, #0a0d14); color: var(--ink); }
       a { color: inherit; }
       button, input { font: inherit; }
@@ -154,6 +158,9 @@
       .product-code { margin-bottom: 7px; color: var(--red-dark); font-size: 10px; font-weight: 700; line-height: 1.45; text-transform: uppercase; }
       .product-info h3 { margin: 0 0 7px; font-family: "Oswald", sans-serif; font-size: 17px; font-weight: 500; letter-spacing: 0; line-height: 1.25; }
       .product-info p { margin: 0 0 15px; color: var(--muted); font-size: 11px; line-height: 1.5; }
+      .product-info .product-application { margin: -7px 0 14px; }
+      .product-info .product-guidance { margin: -7px 0 15px; color: #c1cad8; font-size: 10px; }
+      .product-application strong, .product-guidance strong { color: var(--ink); }
       .product-link { display: inline-flex; align-items: center; gap: 6px; margin-top: auto; padding-top: 2px; color: var(--ink); font-size: 11px; font-weight: 700; text-decoration: none; white-space: nowrap; }
       .product-link:hover { color: var(--red-dark); }
       .product-cart { display: inline-flex; min-height: 36px; align-items: center; justify-content: center; gap: 7px; margin-top: 12px; padding: 0 11px; border: 1px solid var(--line); background: transparent; color: var(--ink); cursor: pointer; font-size: 10px; font-weight: 700; transition: background .2s ease, border-color .2s ease; }
@@ -180,6 +187,10 @@
       .detail-offer { display: block; width: fit-content; margin: -3px 0 12px; padding: 6px 9px; background: var(--red); color: #fff; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
       .detail-title { margin: 0 0 14px; font-family: "Oswald", sans-serif; font-size: clamp(30px, 4vw, 42px); font-weight: 600; letter-spacing: 0; line-height: 1.08; }
       .detail-description { margin-bottom: 24px; color: var(--muted); font-size: 14px; line-height: 1.75; }
+      .detail-application { margin: -10px 0 20px; color: var(--muted); font-size: 13px; line-height: 1.7; }
+      .detail-application strong { display: block; margin-bottom: 4px; color: var(--ink); font-size: 10px; letter-spacing: 1px; text-transform: uppercase; }
+      .detail-guidance { margin: -10px 0 24px; padding: 14px 16px; border-left: 2px solid var(--red); background: var(--surface); color: var(--muted); font-size: 12px; line-height: 1.65; }
+      .detail-guidance strong { display: block; margin-bottom: 4px; color: var(--ink); font-size: 10px; letter-spacing: 1px; text-transform: uppercase; }
       .detail-points { display: grid; gap: 0; margin: 0 0 26px; padding: 0; border-top: 1px solid var(--line); list-style: none; }
       .detail-points li { display: flex; justify-content: space-between; gap: 18px; padding: 12px 0; border-bottom: 1px solid var(--line); color: var(--muted); font-size: 12px; }
       .detail-points strong { color: var(--ink); font-weight: 600; text-align: right; }
@@ -287,6 +298,7 @@
         <nav class="desktop-nav" aria-label="Navegación principal">
           <a href="/#inicio">Inicio</a>
           <a href="/productos.html">Productos</a>
+          <a href="/#ofertas">Ofertas</a>
           <a href="/#catalogo">Catálogo</a>
           <a href="/#nosotros">Nosotros</a>
           <a href="/#contacto">Contacto</a>
@@ -299,7 +311,7 @@
         </div>
       </div>
       <nav class="mobile-menu" id="mobile-menu" aria-label="Navegación móvil" aria-hidden="true">
-        <a href="/#inicio">Inicio</a><a href="/productos.html">Productos</a><a href="/#catalogo">Catálogo</a><a href="/#nosotros">Nosotros</a><a href="/#contacto">Contacto</a>
+        <a href="/#inicio">Inicio</a><a href="/productos.html">Productos</a><a href="/#ofertas">Ofertas</a><a href="/#catalogo">Catálogo</a><a href="/#nosotros">Nosotros</a><a href="/#contacto">Contacto</a>
         <a class="mobile-menu-cart" href="/carrito.html"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 4h2l2.2 11.2a2 2 0 0 0 2 1.6h8.5a2 2 0 0 0 1.9-1.4L21 8H6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" /><circle cx="10" cy="20" r="1" fill="currentColor" /><circle cx="18" cy="20" r="1" fill="currentColor" /></svg>Carrito <span class="nav-cart-count" data-cart-count>0</span></a>
         <a class="nav-contact" href="https://wa.me/51981296259" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 11.2 19a19.4 19.4 0 0 1-6-6A19.8 19.8 0 0 1 2.2 4.2 2 2 0 0 1 4.2 2h3a2 2 0 0 1 2 1.7l.5 2.8a2 2 0 0 1-.6 1.9L7.8 9.7a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 1.9-.6l2.8.5a2 2 0 0 1 2.2 2.6Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>WhatsApp</a>
       </nav>
@@ -533,6 +545,53 @@
         return catalogImage(categoryImages[category][0]);
       }
 
+      const categoryDetails = {
+        "Contravientos": {
+          application: "Herrajes de unión y fijación para resolver encuentros entre paños de vidrio en barandas y cerramientos, según la pieza seleccionada.",
+          quote: "Indica cuántos cristales se unirán, el ángulo y dónde irá la fijación: muro, piso o techo.",
+        },
+        "Duchas": {
+          application: "Accesorios para completar la instalación de mamparas, desde bisagras hasta elementos de deslizamiento y sujeción.",
+          quote: "Comparte la configuración de la mampara, sus medidas y el acabado que buscas.",
+        },
+        "Kits Euro": {
+          application: "Sistemas de apertura fija y corrediza para mamparas; la configuración y los acabados varían según el modelo.",
+          quote: "Comparte las medidas de la mampara, el tipo de apertura y el acabado deseado.",
+        },
+        "Puertas y mamparas": {
+          application: "Componentes de fijación, pivote y cierre para puertas y mamparas de vidrio; el modelo se selecciona según el punto de montaje.",
+          quote: "Indica el tipo de puerta, la orientación y el punto de fijación requerido.",
+        },
+        "Ventanas": {
+          application: "Soluciones de pivote y fijación para hojas de vidrio en ventanas, según su posición y tipo de anclaje.",
+          quote: "Describe el tipo de apertura, la orientación del vidrio y el punto de anclaje.",
+        },
+        "Garruchas": {
+          application: "Ruedas y soportes para sistemas corredizos de vidrio; la configuración depende del riel y del número de ruedas.",
+          quote: "Comparte el tipo de riel y si necesitas una configuración simple o doble.",
+        },
+        "Chapas": {
+          application: "Opciones de cerradura y cierre para puertas, con compatibilidad según el tipo de instalación.",
+          quote: "Indica el tipo de puerta de vidrio y la ubicación prevista para el sistema de cierre.",
+        },
+        "Repisas": {
+          application: "Soportes y accesorios para instalar repisas de vidrio; verifica las medidas y el sistema de fijación.",
+          quote: "Comparte el tamaño y espesor del vidrio, además del tipo de soporte que buscas.",
+        },
+        "Jaladores": {
+          application: "Tiradores para puertas de vidrio con opciones de forma y montaje según el modelo.",
+          quote: "Indica el modelo, las medidas entre puntos de fijación y el acabado deseado.",
+        },
+        "Barandas": {
+          application: "Soluciones de barandas en metal y vidrio configuradas de acuerdo con las medidas y el diseño del proyecto.",
+          quote: "Comparte las medidas del tramo, el diseño y el tipo de pasamano que buscas.",
+        },
+        "Arañas": {
+          application: "Conectores puntuales para la sujeción de paños de vidrio, según la distribución del proyecto.",
+          quote: "Indica las dimensiones del vidrio y la disposición de los puntos de fijación.",
+        },
+      };
+
       function catalogImage(image) {
         if (image.startsWith("/") || image.startsWith("https://")) return image;
         return `/catalogo-products/${image}`;
@@ -607,19 +666,21 @@
             </div>
             <div class="detail-copy">
               <span class="detail-code">${reference}</span>
-              ${isEuroKit ? '<span class="detail-offer">Oferta en kits Euro · Consulta precio especial</span>' : ""}
+              ${isEuroKit ? '<span class="detail-offer">Promociones por consultar · Confirma vigencia</span>' : ""}
               <h1 class="detail-title">${product.name}</h1>
               <p class="detail-description">${product.detail}</p>
+              <p class="detail-application"><strong>Aplicación</strong>${categoryDetails[product.category].application}</p>
+              <p class="detail-guidance"><strong>Para cotizar este producto</strong>${categoryDetails[product.category].quote}</p>
               <ul class="detail-points">
                 <li><span>Familia</span><strong>${product.category}</strong></li>
                 <li><span>Material</span><strong>Acero inoxidable calidad 304</strong></li>
-                <li><span>${isEuroKit ? "Oferta" : "Precio y disponibilidad"}</span><strong>${isEuroKit ? "Consulta precio especial" : "A consultar"}</strong></li>
+                <li><span>${isEuroKit ? "Promociones" : "Precio y disponibilidad"}</span><strong>${isEuroKit ? "Consultar vigencia" : "A consultar"}</strong></li>
               </ul>
               <div class="detail-actions">
                 <button class="detail-cta" id="add-to-quote" type="button" aria-pressed="${readQuoteItems().some((item) => item.id === productId(product))}">Añadir al carrito</button>
                 <a class="quote-view" href="/carrito.html">Ver carrito (<span id="quote-count">${readQuoteItems().reduce((total, item) => total + item.quantity, 0)}</span>) <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg></a>
               </div>
-              <a class="product-link" href="https://wa.me/51981296259?text=${isEuroKit ? encodeURIComponent(`Hola, quisiera consultar la oferta para ${product.name}${product.code ? ` (código ${product.code})` : ""}.`) : message}" target="_blank" rel="noopener noreferrer">${isEuroKit ? "Consultar oferta por WhatsApp" : "Consultar directamente por WhatsApp"}</a>
+              <a class="product-link" href="https://wa.me/51981296259?text=${isEuroKit ? encodeURIComponent(`Hola, quisiera consultar si hay una promoción vigente para ${product.name}${product.code ? ` (código ${product.code})` : ""}.`) : message}" target="_blank" rel="noopener noreferrer">${isEuroKit ? "Consultar promociones por WhatsApp" : "Consultar directamente por WhatsApp"}</a>
               <p class="detail-footnote">${isEuroKit ? (product.images?.length || product.imageFile) ? "Imágenes referenciales del kit. Confirma acabado y medidas al solicitar cotización." : "Foto propia próximamente. Confirma medidas y acabados al solicitar cotización." : "Imagen del catálogo de productos. Confirma acabado y medidas al solicitar cotización."}</p>
             </div>
           </div>
@@ -681,16 +742,18 @@
         grid.innerHTML = filtered.length ? filtered.map((product, index) => {
           const reference = product.code ? `Código ${product.code}` : "A medida / según modelo";
           const isEuroKit = product.category === "Kits Euro";
-          const message = encodeURIComponent(isEuroKit ? `Hola, quisiera consultar la oferta para ${product.name}${product.code ? ` (código ${product.code})` : ""}.` : `Hola, quisiera consultar disponibilidad de ${product.name}${product.code ? ` (código ${product.code})` : ""}.`);
+          const message = encodeURIComponent(isEuroKit ? `Hola, quisiera consultar si hay una promoción vigente para ${product.name}${product.code ? ` (código ${product.code})` : ""}.` : `Hola, quisiera consultar disponibilidad de ${product.name}${product.code ? ` (código ${product.code})` : ""}.`);
           const image = productImage(product);
           const productUrl = `/productos.html?producto=${encodeURIComponent(productId(product))}`;
           return `<article class="product" style="--item-index:${index}">
-            <a class="product-open" href="${productUrl}" aria-label="Ver detalle: ${product.name}"><div class="product-image"><img src="${image}" alt="Imagen del catálogo: ${product.name}" loading="lazy" />${isEuroKit ? '<span class="product-offer">Oferta</span>' : ""}<span class="product-category">${product.category}</span></div></a>
+            <a class="product-open" href="${productUrl}" aria-label="Ver detalle: ${product.name}"><div class="product-image"><img src="${image}" alt="Imagen del catálogo: ${product.name}" loading="lazy" />${isEuroKit ? '<span class="product-offer">Consulta promoción</span>' : ""}<span class="product-category">${product.category}</span></div></a>
             <div class="product-info">
               <span class="product-code">${reference}</span>
               <a class="product-name-link" href="${productUrl}"><h3>${product.name}</h3></a>
               <p>${product.detail}</p>
-              <a class="product-link" href="https://wa.me/51981296259?text=${message}" target="_blank" rel="noopener noreferrer">${isEuroKit ? "Consultar oferta" : "Consultar"} <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg></a>
+              <p class="product-application"><strong>Aplicación:</strong> ${categoryDetails[product.category].application}</p>
+              <p class="product-guidance"><strong>Para cotizar:</strong> ${categoryDetails[product.category].quote}</p>
+              <a class="product-link" href="https://wa.me/51981296259?text=${message}" target="_blank" rel="noopener noreferrer">${isEuroKit ? "Consultar promoción" : "Consultar"} <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg></a>
               <button class="product-cart" type="button" data-add-cart="${productId(product)}"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 4h2l2.2 11.2a2 2 0 0 0 2 1.6h8.5a2 2 0 0 0 1.9-1.4L21 8H6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" /></svg>Añadir al carrito</button>
             </div>
           </article>`;

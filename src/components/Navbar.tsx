@@ -28,6 +28,7 @@ const Navbar = () => {
   const links = [
     { label: "Inicio", href: "#inicio" },
     { label: "Productos", href: "/productos.html" },
+    { label: "Ofertas", href: "#ofertas" },
     { label: "Catálogo", href: "#catalogo" },
     { label: "Nosotros", href: "#nosotros" },
     { label: "Contacto", href: "#contacto" },
