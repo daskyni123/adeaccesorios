@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 50% 8%;
+    --foreground: 210 20% 95%;
+
+    --card: 220 50% 12%;
+    --card-foreground: 210 20% 95%;
+
+    --popover: 220 50% 12%;
+    --popover-foreground: 210 20% 95%;
+
+    --primary: 0 78% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 225 60% 25%;
+    --secondary-foreground: 210 20% 95%;
+
+    --muted: 220 40% 16%;
+    --muted-foreground: 220 15% 55%;
+
+    --accent: 225 70% 40%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 225 30% 22%;
+    --input: 225 30% 22%;
+    --ring: 0 78% 50%;
+
+    --radius: 0.5rem;
+
+    --navy: 225 65% 20%;
+    --navy-light: 225 55% 35%;
+    --red-glow: 0 78% 50%;
+
+    --sidebar-background: 220 50% 9%;
+    --sidebar-foreground: 210 20% 95%;
+    --sidebar-primary: 0 78% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 225 60% 25%;
+    --sidebar-accent-foreground: 210 20% 95%;
+    --sidebar-border: 225 30% 22%;
+    --sidebar-ring: 0 78% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+@layer utilities {
+  .text-gradient-brand {
+    background: linear-gradient(135deg, hsl(225 70% 55%), hsl(0 78% 55%), hsl(225 70% 50%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-navy-gradient {
+    background: linear-gradient(135deg, hsl(220 50% 8%), hsl(225 50% 14%), hsl(220 50% 9%));
+  }
+
+  .border-glow {
+    border-color: hsl(0 78% 50% / 0.3);
+  }
+
+  .shadow-red {
+    box-shadow: 0 0 30px -10px hsl(0 78% 50% / 0.3);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+section[id] {
+  scroll-margin-top: 80px;
+}
+
+[data-reveal] {
+  transform: translateY(22px);
+  opacity: 0;
+  transition: opacity 700ms ease, transform 700ms cubic-bezier(.2,.7,.2,1);
+}
+
+[data-reveal].is-visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.hero-background {
+  transform: scale(1.025);
+  animation: hero-drift 24s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+.hero-overlay {
+  background-image: linear-gradient(100deg, hsl(220 50% 8% / .52), transparent 82%);
+}
+
+.hero-copy > * {
+  animation: hero-enter 720ms both;
+}
+
+.hero-copy > :nth-child(1) { animation-delay: 80ms; }
+.hero-copy > :nth-child(2) { animation-delay: 170ms; }
+.hero-copy > :nth-child(3) { animation-delay: 260ms; }
+.hero-copy > :nth-child(4) { animation-delay: 350ms; }
+.hero-copy > :nth-child(5) { animation-delay: 440ms; }
+
+@keyframes hero-drift {
+  from { transform: scale(1.025); }
+  to { transform: scale(1.085); }
+}
+
+@keyframes hero-enter {
+  from { transform: translateY(18px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.product-card,
+.feature-row,
+.catalog-frame,
+.contact-detail,
+.contact-map {
+  transition: transform 260ms cubic-bezier(.2,.7,.2,1), border-color 260ms ease, box-shadow 260ms ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 38px -22px hsl(0 78% 50% / .55);
+}
+
+.feature-row:hover,
+.contact-detail:hover {
+  transform: translateX(4px);
+}
+
+.catalog-frame:focus-within,
+.contact-map:hover {
+  border-color: hsl(0 78% 50% / .55);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  [data-reveal] { transform: none; opacity: 1; transition: none; }
+  .hero-background { transform: none; animation: none; }
+  .hero-copy > * { animation: none; }
+  .product-card,
+  .feature-row,
+  .catalog-frame,
+  .contact-detail,
+  .contact-map { transition: none; }
+}

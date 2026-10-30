@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Revisa tu carrito de productos A & DE y solicita una cotización a medida." />
+    <meta name="theme-color" content="#0a0d14" />
+    <title>Carrito de compras | A &amp; DE Accesorios</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+      :root { color-scheme: dark; --ink:#edf0f5; --muted:#a0a9ba; --paper:#0a0d14; --surface:#10141f; --line:#273046; --red:#e31b23; --red-dark:#f04444; --dark:#090b12; font-family:"DM Sans",sans-serif; }
+      * { box-sizing:border-box; }
+      [hidden] { display:none !important; }
+      body { margin:0; color:var(--ink); background:linear-gradient(135deg,#0a0d14,#11182a 50%,#0a0d14); }
+      a { color:inherit; }
+      .topbar { position:sticky; top:0; z-index:50; height:65px; border-bottom:1px solid var(--line); background:rgb(10 13 20 / 90%); color:#fff; backdrop-filter:blur(12px); }
+      .topbar-inner { display:flex; width:min(1280px,100%); height:100%; align-items:center; justify-content:space-between; gap:24px; margin:0 auto; padding:0 16px; }
+      .brand { display:inline-flex; flex:0 0 auto; align-items:center; text-decoration:none; }
+      .brand img { display:block; width:auto; height:56px; object-fit:contain; }
+      .desktop-nav { display:flex; align-items:center; gap:32px; }
+      .desktop-nav a,.mobile-menu a { color:#7b879d; font-size:14px; font-weight:500; letter-spacing:1.4px; text-decoration:none; text-transform:uppercase; transition:color .2s ease; }
+      .desktop-nav a:hover,.mobile-menu a:hover { color:var(--red-dark); }
+      .nav-cart { display:inline-flex; align-items:center; gap:7px; }
+      .nav-cart svg { width:16px; height:16px; }
+      .nav-cart-count { display:grid; min-width:20px; height:20px; place-items:center; border-radius:50%; background:hsl(0 78% 50%); color:#fff; font-size:10px; font-weight:700; letter-spacing:0; }
+      .nav-contact { display:inline-flex; min-height:36px; align-items:center; gap:8px; padding:0 15px; border-radius:6px; background:hsl(0 78% 50%); color:#fff !important; font-size:14px !important; font-weight:600 !important; letter-spacing:0 !important; }
+      .nav-contact:hover { background:var(--red-dark); }
+      .nav-contact svg { width:15px; height:15px; }
+      .mobile-actions { display:none; align-items:center; gap:18px; }
+      .mobile-cart { position:relative; display:inline-flex; color:var(--ink); }
+      .mobile-cart svg { width:21px; height:21px; }
+      .mobile-cart .nav-cart-count { position:absolute; top:-8px; right:-9px; min-width:16px; height:16px; font-size:9px; }
+      .menu-toggle { display:grid; width:36px; height:36px; place-items:center; border:0; background:transparent; color:var(--ink); cursor:pointer; }
+      .menu-toggle svg { width:23px; height:23px; }
+      .mobile-menu { display:flex; position:absolute; top:64px; right:0; left:0; max-height:0; flex-direction:column; gap:0; overflow:hidden; padding:0 20px; border-bottom:0 solid var(--line); background:rgb(9 11 18 / 98%); opacity:0; transform:translateY(-8px); visibility:hidden; box-shadow:0 18px 30px rgb(0 0 0 / 24%); transition:max-height .34s cubic-bezier(.2,.7,.2,1),opacity .22s ease,transform .34s cubic-bezier(.2,.7,.2,1),padding .34s ease,border-width .34s ease,visibility 0s linear .34s; }
+      .mobile-menu.is-open { max-height:440px; padding:8px 20px 16px; border-bottom-width:1px; opacity:1; transform:translateY(0); visibility:visible; transition:max-height .38s cubic-bezier(.2,.7,.2,1),opacity .24s ease,transform .38s cubic-bezier(.2,.7,.2,1),padding .38s ease,border-width .38s ease,visibility 0s; }
+      .mobile-menu a { padding:13px 0; border-bottom:1px solid rgb(39 48 70 / 65%); }
+      .mobile-menu .mobile-menu-cart { display:flex; align-items:center; gap:8px; }
+      .mobile-menu .mobile-menu-cart svg,.mobile-menu .nav-contact svg { width:16px; height:16px; }
+      .mobile-menu .nav-contact { width:fit-content; margin-top:12px; padding:11px 14px; border:0; border-radius:3px; background:var(--red); color:#fff; letter-spacing:0; }
+      .nav-cart { display:inline-flex; align-items:center; gap:7px; }
+      .nav-cart svg { width:17px; height:17px; }
+      .nav-cart-count { display:grid; min-width:20px; height:20px; place-items:center; border-radius:50%; background:var(--red); color:#fff; font-size:10px; font-weight:700; }
+      main { width:min(1120px,calc(100% - 40px)); min-height:68vh; margin:0 auto; padding:52px 0 82px; }
+      .eyebrow { margin:0 0 10px; color:#f04444; font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; }
+      h1,h2,h3,p { margin-top:0; }
+      h1,h2,h3 { font-family:"Oswald",sans-serif; letter-spacing:0; }
+      h1 { margin-bottom:8px; font-size:clamp(36px,6vw,58px); font-weight:600; line-height:1; text-transform:uppercase; }
+      .intro { margin-bottom:34px; color:var(--muted); font-size:14px; line-height:1.65; }
+      .cart-heading { display:flex; align-items:end; justify-content:space-between; gap:18px; margin-bottom:8px; }
+      .cart-heading h1 { margin-bottom:0; }
+      .clear-cart { display:inline-flex; min-height:38px; align-items:center; gap:8px; padding:0 10px; border:1px solid var(--line); background:transparent; color:var(--muted); cursor:pointer; font-size:11px; font-weight:600; }
+      .clear-cart:hover { border-color:var(--red); color:var(--red-dark); }
+      .clear-cart svg { width:15px; height:15px; }
+      .layout { display:grid; grid-template-columns:minmax(0,1.4fr) minmax(270px,.6fr); align-items:start; gap:36px; }
+      .quote-list { border-top:1px solid var(--line); }
+      .quote-item { display:grid; grid-template-columns:104px minmax(0,1fr) 102px 36px; align-items:center; gap:16px; padding:18px 0; border-bottom:1px solid var(--line); animation:enter .35s both; }
+      @keyframes enter { from { transform:translateY(8px); opacity:0; } to { transform:translateY(0); opacity:1; } }
+      .quote-image { display:grid; aspect-ratio:1.25; place-items:center; overflow:hidden; background:#f7f8fa; }
+      .quote-image img { width:100%; height:100%; padding:8px; object-fit:contain; }
+      .visually-hidden { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+      .quote-code { margin-bottom:5px; color:var(--red-dark); font-size:10px; font-weight:700; text-transform:uppercase; }
+      .quote-item h2 { margin:0 0 5px; font-size:18px; font-weight:500; }
+      .quote-item p { margin:0; color:var(--muted); font-size:11px; line-height:1.45; }
+      .quantity-stepper { display:grid; grid-template-columns:32px 36px 32px; align-items:center; height:40px; border:1px solid var(--line); background:var(--surface); }
+      .quantity-step { display:grid; width:32px; height:38px; place-items:center; border:0; background:transparent; color:var(--ink); cursor:pointer; font-size:17px; }
+      .quantity-step:hover { color:var(--red-dark); }
+      .quantity { width:36px; height:38px; padding:0 2px; border:0; outline:0; background:transparent; color:var(--ink); text-align:center; appearance:textfield; }
+      .quantity::-webkit-inner-spin-button, .quantity::-webkit-outer-spin-button { margin:0; appearance:none; }
+      .quantity:focus-visible { outline:1px solid var(--red); outline-offset:-2px; }
+      .remove { display:grid; width:36px; height:36px; place-items:center; border:1px solid transparent; background:transparent; color:var(--muted); cursor:pointer; }
+      .remove:hover { border-color:var(--line); color:var(--red-dark); }
+      .remove svg { width:18px; height:18px; }
+      .summary { position:sticky; top:22px; padding:22px; border:1px solid var(--line); background:var(--surface); }
+      .summary h2 { margin-bottom:18px; font-size:22px; font-weight:500; text-transform:uppercase; }
+      .summary-count { display:flex; justify-content:space-between; padding:12px 0; border-top:1px solid var(--line); color:var(--muted); font-size:12px; }
+      .summary-count strong { color:var(--ink); }
+      .notes-label { display:block; margin:18px 0 8px; color:var(--ink); font-size:11px; font-weight:700; }
+      .notes { width:100%; min-height:100px; resize:vertical; padding:11px; border:1px solid var(--line); border-radius:2px; outline:none; background:var(--dark); color:var(--ink); font:inherit; font-size:12px; }
+      .notes:focus { border-color:var(--red); }
+      .send { display:flex; width:100%; min-height:46px; align-items:center; justify-content:center; gap:9px; margin-top:16px; border:0; border-radius:2px; background:var(--red); color:white; cursor:pointer; font-size:12px; font-weight:700; text-decoration:none; transition:background .2s ease,transform .2s ease; }
+      .send:hover { transform:translateY(-2px); background:var(--red-dark); }
+      .send svg { width:17px; height:17px; }
+      .note { margin:12px 0 0; color:var(--muted); font-size:10px; line-height:1.55; }
+      .empty { display:flex; min-height:180px; align-items:center; justify-content:space-between; gap:22px; padding:26px; border:1px solid var(--line); background:rgb(16 20 31 / 56%); color:var(--muted); }
+      .empty h2 { margin-bottom:6px; color:var(--ink); font-size:23px; font-weight:500; }
+      .empty p { margin:0; font-size:12px; line-height:1.6; }
+      .empty a { display:inline-flex; flex:0 0 auto; min-height:42px; align-items:center; justify-content:center; padding:0 16px; background:var(--red); color:#fff; font-size:11px; font-weight:700; text-decoration:none; transition:background .2s ease; }
+      .empty a:hover { background:var(--red-dark); }
+      footer { display:flex; align-items:center; justify-content:space-between; gap:20px; padding:24px clamp(20px,6vw,88px); background:var(--dark); color:#c6cecb; font-size:12px; }
+      footer a { color:#fff; text-decoration:none; }
+      @media (max-width:767px) { .topbar .desktop-nav { display:none; } .mobile-actions { display:flex; } }
+      @media (max-width:760px) { .layout { grid-template-columns:1fr; gap:24px; } .summary { position:static; } }
+      @media (max-width:560px) { .topbar-inner { padding:0 18px; } main { width:calc(100% - 32px); padding:36px 0 54px; } .cart-heading { align-items:start; flex-direction:column; gap:12px; } .quote-item { grid-template-columns:62px minmax(0,1fr) 96px 30px; gap:7px; padding:14px 0; } .quote-image { aspect-ratio:1; } .quote-item h2 { font-size:15px; } .quote-item p { font-size:10px; } .quantity-stepper { grid-template-columns:30px 34px 30px; height:38px; } .quantity-step { width:30px; height:36px; } .quantity { width:34px; height:36px; } .remove { width:30px; height:32px; } .empty { align-items:flex-start; flex-direction:column; gap:16px; min-height:0; padding:22px 18px; } footer { align-items:start; flex-direction:column; } }
+      @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; } }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="/#inicio" aria-label="A & DE Accesorios, inicio"><img src="/logo.png" alt="A &amp; DE Accesorios" /></a>
+        <nav class="desktop-nav" aria-label="Navegación principal">
+          <a href="/#inicio">Inicio</a><a href="/productos.html">Productos</a><a href="/#catalogo">Catálogo</a><a href="/#nosotros">Nosotros</a><a href="/#contacto">Contacto</a>
+          <a class="nav-cart" href="/carrito.html" aria-label="Carrito de compras, 0 unidades"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 4h2l2.2 11.2a2 2 0 0 0 2 1.6h8.5a2 2 0 0 0 1.9-1.4L21 8H6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" /><circle cx="10" cy="20" r="1" fill="currentColor" /><circle cx="18" cy="20" r="1" fill="currentColor" /></svg>Carrito <span class="nav-cart-count" data-cart-count>0</span></a>
+          <a class="nav-contact" href="https://wa.me/51981296259" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 11.2 19a19.4 19.4 0 0 1-6-6A19.8 19.8 0 0 1 2.2 4.2 2 2 0 0 1 4.2 2h3a2 2 0 0 1 2 1.7l.5 2.8a2 2 0 0 1-.6 1.9L7.8 9.7a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 1.9-.6l2.8.5a2 2 0 0 1 2.2 2.6Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>WhatsApp</a>
+        </nav>
+        <div class="mobile-actions">
+          <a class="mobile-cart" href="/carrito.html" aria-label="Carrito de compras, 0 unidades"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 4h2l2.2 11.2a2 2 0 0 0 2 1.6h8.5a2 2 0 0 0 1.9-1.4L21 8H6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" /><circle cx="10" cy="20" r="1" fill="currentColor" /><circle cx="18" cy="20" r="1" fill="currentColor" /></svg><span class="nav-cart-count" data-cart-count>0</span></a>
+          <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /></svg></button>
+        </div>
+      </div>
+      <nav class="mobile-menu" id="mobile-menu" aria-label="Navegación móvil" aria-hidden="true">
+        <a href="/#inicio">Inicio</a><a href="/productos.html">Productos</a><a href="/#catalogo">Catálogo</a><a href="/#nosotros">Nosotros</a><a href="/#contacto">Contacto</a>
+        <a class="mobile-menu-cart" href="/carrito.html"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 4h2l2.2 11.2a2 2 0 0 0 2 1.6h8.5a2 2 0 0 0 1.9-1.4L21 8H6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" /><circle cx="10" cy="20" r="1" fill="currentColor" /><circle cx="18" cy="20" r="1" fill="currentColor" /></svg>Carrito <span class="nav-cart-count" data-cart-count>0</span></a>
+        <a class="nav-contact" href="https://wa.me/51981296259" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 11.2 19a19.4 19.4 0 0 1-6-6A19.8 19.8 0 0 1 2.2 4.2 2 2 0 0 1 4.2 2h3a2 2 0 0 1 2 1.7l.5 2.8a2 2 0 0 1-.6 1.9L7.8 9.7a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 1.9-.6l2.8.5a2 2 0 0 1 2.2 2.6Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>WhatsApp</a>
+      </nav>
+    </header>
+
+    <main>
+      <p class="eyebrow">A &amp; DE · Atención a medida</p>
+      <div class="cart-heading">
+        <h1>Carrito de compras</h1>
+        <button class="clear-cart" id="clear-cart" type="button" hidden><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M10 11v6m4-6v6M6 7l1 14h10l1-14M9 7V4h6v3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" /></svg>Vaciar carrito</button>
+      </div>
+      <p class="intro">Revisa tus productos y cantidades antes de solicitar una cotización.</p>
+      <div class="layout">
+        <section id="quote-list" class="quote-list" aria-label="Productos seleccionados"></section>
+        <aside class="summary" id="summary" aria-labelledby="summary-title">
+          <h2 id="summary-title">Resumen de compra</h2>
+          <div class="summary-count"><span>Referencias</span><strong id="reference-count">0</strong></div>
+          <div class="summary-count"><span>Unidades solicitadas</span><strong id="unit-count">0</strong></div>
+          <label class="notes-label" for="notes">Notas para la cotización</label>
+          <textarea class="notes" id="notes" placeholder="Medidas, acabado o detalles que quieras incluir"></textarea>
+          <a class="send" id="send-quote" href="#" target="_blank" rel="noopener noreferrer">Solicitar cotización por WhatsApp <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg></a>
+          <p class="note">Precios y disponibilidad se confirman al preparar la cotización.</p>
+        </aside>
+      </div>
+    </main>
+
+    <footer><span>© 2026 A &amp; DE Accesorios</span><a href="/productos.html">Volver al catálogo</a></footer>
+
+    <script>
+      const quoteKey = "ade-accessory-quote";
+      const quoteList = document.querySelector("#quote-list");
+      const noteField = document.querySelector("#notes");
+      const referenceCount = document.querySelector("#reference-count");
+      const unitCount = document.querySelector("#unit-count");
+      const sendQuote = document.querySelector("#send-quote");
+      const clearCart = document.querySelector("#clear-cart");
+      const menuToggle = document.querySelector("#menu-toggle");
+      const mobileMenu = document.querySelector("#mobile-menu");
+
+      function readQuote() {
+        try {
+          return JSON.parse(localStorage.getItem(quoteKey) || "[]");
+        } catch {
+          return [];
+        }
+      }
+
+      function saveQuote(items) {
+        localStorage.setItem(quoteKey, JSON.stringify(items));
+        renderQuote();
+      }
+
+      function updateNavCartCount(items) {
+        const units = items.reduce((total, item) => total + item.quantity, 0);
+        document.querySelectorAll("[data-cart-count]").forEach((badge) => { badge.textContent = units; });
+        document.querySelectorAll(".nav-cart, .mobile-cart, .mobile-menu-cart").forEach((link) => link.setAttribute("aria-label", `Carrito de compras, ${units} ${units === 1 ? "unidad" : "unidades"}`));
+      }
+
+      function updateSummary(items) {
+        const units = items.reduce((total, item) => total + item.quantity, 0);
+        referenceCount.textContent = items.length;
+        unitCount.textContent = units;
+        updateNavCartCount(items);
+        const lines = items.map((item) => `- ${item.name}${item.code ? ` (${item.code})` : ""} x ${item.quantity}`).join("\n");
+        const note = noteField.value.trim();
+        const message = `Hola, quisiera solicitar una cotización:\n${lines}${note ? `\n\nNotas del proyecto: ${note}` : ""}`;
+        sendQuote.href = `https://wa.me/51981296259?text=${encodeURIComponent(message)}`;
+        sendQuote.setAttribute("aria-disabled", "false");
+        sendQuote.style.opacity = "1";
+      }
+
+      function renderQuote() {
+        const items = readQuote();
+        const units = items.reduce((total, item) => total + item.quantity, 0);
+        referenceCount.textContent = items.length;
+        unitCount.textContent = units;
+        updateNavCartCount(items);
+        clearCart.hidden = !items.length;
+        if (!items.length) {
+          quoteList.innerHTML = '<div class="empty"><div><h2>Tu carrito está vacío</h2><p>Explora el catálogo y agrega las piezas que necesitas cotizar.</p></div><a href="/productos.html">Explorar productos</a></div>';
+          sendQuote.setAttribute("aria-disabled", "true");
+          sendQuote.style.opacity = ".5";
+          sendQuote.href = "#";
+          return;
+        }
+
+        quoteList.innerHTML = items.map((item, index) => `<article class="quote-item" data-id="${item.id}">
+          <a class="quote-image" href="${item.url}"><img src="${item.image}" alt="Imagen del catálogo: ${item.name}" /></a>
+          <div><p class="quote-code">${item.code ? `Código ${item.code}` : "A medida / según modelo"}</p><h2>${item.name}</h2><p>${item.category}</p></div>
+          <div class="quantity-stepper" role="group" aria-label="Cantidad de ${item.name}">
+            <button class="quantity-step" type="button" data-step="-1" data-id="${item.id}" aria-label="Restar una unidad">−</button>
+            <input class="quantity" type="number" min="1" max="999" value="${item.quantity}" data-quantity="${item.id}" aria-label="Cantidad de ${item.name}" />
+            <button class="quantity-step" type="button" data-step="1" data-id="${item.id}" aria-label="Sumar una unidad">+</button>
+          </div>
+          <button class="remove" type="button" data-remove="${item.id}" aria-label="Quitar ${item.name}"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M10 11v6m4-6v6M6 7l1 14h10l1-14M9 7V4h6v3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" /></svg></button>
+        </article>`).join("");
+        quoteList.querySelectorAll("[data-quantity]").forEach((input) => input.addEventListener("change", () => {
+          const nextItems = readQuote();
+          const item = nextItems.find((entry) => entry.id === input.dataset.quantity);
+          if (item) item.quantity = Math.max(1, Math.min(999, Number(input.value) || 1));
+          localStorage.setItem(quoteKey, JSON.stringify(nextItems));
+          updateSummary(nextItems);
+        }));
+        quoteList.querySelectorAll("[data-remove]").forEach((button) => button.addEventListener("click", () => saveQuote(readQuote().filter((item) => item.id !== button.dataset.remove))));
+        quoteList.querySelectorAll("[data-step]").forEach((button) => button.addEventListener("click", () => {
+          const nextItems = readQuote();
+          const item = nextItems.find((entry) => entry.id === button.dataset.id);
+          if (!item) return;
+          item.quantity = Math.max(1, Math.min(999, item.quantity + Number(button.dataset.step)));
+          saveQuote(nextItems);
+        }));
+        updateSummary(items);
+      }
+
+      noteField.addEventListener("input", renderQuote);
+      const setMobileMenuOpen = (isOpen) => {
+        mobileMenu.classList.toggle("is-open", isOpen);
+        mobileMenu.setAttribute("aria-hidden", String(!isOpen));
+        menuToggle.setAttribute("aria-expanded", String(isOpen));
+        menuToggle.setAttribute("aria-label", isOpen ? "Cerrar menú" : "Abrir menú");
+        menuToggle.innerHTML = isOpen
+          ? '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /></svg>'
+          : '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /></svg>';
+      };
+      menuToggle.addEventListener("click", () => setMobileMenuOpen(menuToggle.getAttribute("aria-expanded") !== "true"));
+      mobileMenu.addEventListener("click", (event) => {
+        if (event.target.closest("a")) setMobileMenuOpen(false);
+      });
+      window.matchMedia("(min-width: 768px)").addEventListener("change", (event) => {
+        if (event.matches) setMobileMenuOpen(false);
+      });
+      clearCart.addEventListener("click", () => saveQuote([]));
+      window.addEventListener("storage", () => renderQuote());
+      sendQuote.addEventListener("click", (event) => {
+        if (!readQuote().length) event.preventDefault();
+      });
+      renderQuote();
+    </script>
+  </body>
+</html>
