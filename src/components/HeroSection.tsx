@@ -1,6 +1,5 @@
-import { ArrowDown, ArrowRight, BadgeCheck, Factory, ShieldCheck, Wrench } from "lucide-react";
+import { ArrowDown, ArrowRight, BadgeCheck, Factory, ShieldCheck, ShoppingBag, Wrench } from "lucide-react";
 import heroImg from "@/assets/hero-steel.jpg";
-import logo from "@/assets/logo.png";
 import barandasImg from "@/assets/product-barandas.jpg";
 
 const HeroSection = () => {
@@ -19,19 +18,18 @@ const HeroSection = () => {
 
       <div className="relative z-10 container mx-auto grid w-full items-center gap-12 px-4 pb-20 pt-28 md:py-32 lg:grid-cols-[1fr_0.95fr] lg:gap-16">
         <div className="hero-copy text-center lg:text-left">
-          <img src={logo} alt="A & DE Accesorios" className="mx-auto mb-7 h-16 md:h-20 lg:mx-0" />
-          <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-border bg-background/70 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground md:text-xs">
+          <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-border/80 bg-background/75 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground shadow-lg shadow-black/10 backdrop-blur md:text-xs">
             <BadgeCheck className="h-4 w-4 text-primary" aria-hidden="true" />
-            Fabricación en acero inoxidable 304
+            Fabricantes · Acero inoxidable 304
           </p>
-          <h1 className="mb-6 font-display text-5xl font-bold uppercase leading-[0.95] md:text-7xl xl:text-8xl">
-            <span className="text-gradient-brand">Accesorios</span>
+          <h1 className="mb-6 max-w-2xl font-display text-5xl font-semibold leading-[1.02] tracking-tight md:text-7xl xl:text-8xl">
+            <span className="text-gradient-brand">Acero inoxidable</span>
             <br />
-            <span className="text-foreground">de Acero</span>
+            <span className="text-foreground">para cada proyecto</span>
           </h1>
           <p className="mx-auto mb-8 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg lg:mx-0">
-            Barandas, herrajes, soportes y piezas personalizadas en acero inoxidable calidad 304
-            para vidrio y construcción. Soluciones para proyectos residenciales y comerciales.
+            Venta al por mayor y menor de barandas, herrajes y piezas para vidrio y construcción.
+            Fabricamos soluciones a medida con acabados precisos para cada proyecto.
           </p>
           <div className="flex flex-col justify-center gap-3 sm:flex-row lg:justify-start">
             <a
@@ -49,10 +47,11 @@ const HeroSection = () => {
               Explorar productos <ArrowDown className="h-4 w-4" aria-hidden="true" />
             </a>
           </div>
-          <div className="mt-8 flex flex-wrap justify-center gap-x-5 gap-y-3 text-xs text-muted-foreground lg:justify-start">
+          <div className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-3 border-t border-white/10 pt-5 text-xs font-medium text-muted-foreground lg:justify-start">
             <span className="inline-flex items-center gap-2"><Factory className="h-4 w-4 text-primary" aria-hidden="true" />Fabricación propia</span>
-            <span className="inline-flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-primary" aria-hidden="true" />Acero inoxidable 304</span>
-            <span className="inline-flex items-center gap-2"><Wrench className="h-4 w-4 text-primary" aria-hidden="true" />Soluciones a medida</span>
+            <span className="inline-flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-primary" aria-hidden="true" />Calidad 304</span>
+            <span className="inline-flex items-center gap-2"><Wrench className="h-4 w-4 text-primary" aria-hidden="true" />Hecho a medida</span>
+            <span className="inline-flex items-center gap-2"><ShoppingBag className="h-4 w-4 text-primary" aria-hidden="true" />Mayor y menor</span>
           </div>
         </div>
 

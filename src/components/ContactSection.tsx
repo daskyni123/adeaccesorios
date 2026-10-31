@@ -1,4 +1,4 @@
-import { Phone, MapPin, Clock, ExternalLink } from "lucide-react";
+import { Phone, MapPin, Clock, ExternalLink, MapPinned } from "lucide-react";
 
 const ContactSection = () => {
   return (
@@ -26,7 +26,7 @@ const ContactSection = () => {
                 <MapPin className="mt-1 h-5 w-5 shrink-0 text-primary" />
                 <div>
                   <h3 className="font-display text-base font-semibold uppercase text-foreground">Ubicación</h3>
-                  <p className="text-sm text-muted-foreground">Av. Los Héroes 1329, Urb. Villa María del Triunfo, Lima</p>
+                  <p className="text-sm text-muted-foreground">Av. Los Héroes 1329, Urb. Villa María del Triunfo, Lima 15801</p>
                 </div>
               </div>
               <div className="flex items-start gap-4 py-5">
@@ -48,12 +48,23 @@ const ContactSection = () => {
             </a>
           </div>
 
-          <div className="contact-map min-h-[320px] overflow-hidden border border-border md:min-h-[440px]">
+          <div className="contact-map overflow-hidden border border-border">
+            <div className="flex flex-col gap-3 border-b border-border bg-background/80 p-4 sm:flex-row sm:items-center sm:justify-between">
+              <p className="mb-0 text-sm text-muted-foreground">Av. Los Héroes 1329, Villa María del Triunfo, Lima 15801 · R2QV+RC</p>
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=A%20%26%20DE%20Accesorios%2C%20Av.%20Los%20H%C3%A9roes%201329%2C%20Villa%20Mar%C3%ADa%20del%20Triunfo%2C%20Lima"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-10 shrink-0 items-center justify-center gap-2 rounded-md border border-border px-4 text-xs font-semibold uppercase tracking-wide text-foreground transition-colors hover:border-primary/50 hover:bg-secondary"
+              >
+                Abrir ubicación <MapPinned className="h-4 w-4 text-primary" aria-hidden="true" />
+              </a>
+            </div>
             <iframe
-              title="Ubicación de A & DE Accesorios"
-              src="https://www.google.com/maps?q=Av.+Los+H%C3%A9roes+1329%2C+Villa+Mar%C3%ADa+del+Triunfo%2C+Lima+(R2QV%2BRC)&output=embed"
+              title="Mapa de ubicación de A & DE Accesorios"
+              src="https://www.google.com/maps?q=A%20%26%20DE%20Accesorios%2C%20Av.%20Los%20H%C3%A9roes%201329%2C%20Villa%20Mar%C3%ADa%20del%20Triunfo%2C%20Lima&z=17&output=embed"
               width="100%"
-              height="100%"
+              height="440"
               className="h-[320px] w-full md:h-[440px]"
               style={{ border: 0 }}
               allowFullScreen
