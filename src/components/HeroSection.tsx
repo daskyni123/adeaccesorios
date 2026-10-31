@@ -62,9 +62,11 @@ const HeroSection = () => {
 
         <figure className="hero-showcase overflow-hidden rounded-xl border border-white/15 bg-background/80 shadow-2xl shadow-black/40 backdrop-blur-sm">
           <video
-            className="mx-auto block aspect-video max-h-[68vh] w-full bg-background object-cover"
+            className="mx-auto block aspect-[9/16] h-auto w-full max-w-[420px] bg-background object-contain"
             src="/catalogo-products/barandas-ia.mp4"
             poster={barandasImg}
+            autoPlay
+            muted
             loop
             playsInline
             controls
